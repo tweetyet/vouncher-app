@@ -5,6 +5,7 @@ import useSWR from "swr";
 import ProductListSkeletonLoader from "./ProductListSkeletonLoader";
 import ProductListEmptyStage from "./ProductListEmptyStage";
 import ProductRow from "./ProductRow";
+import {Link} from "react-router-dom";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -40,7 +41,7 @@ const ProductList = () => {
           </div>
         </div>
         <div className="">
-          <button
+          <Link to="/product/create"
             className="px-6 py-2 flex items-center gap-2
          bg-[#3A2F26] 
          text-[#F3EBDD] 
@@ -52,7 +53,7 @@ const ProductList = () => {
           >
             Add new product
             <FaCartPlus />
-          </button>
+          </Link>
         </div>
       </div>
 

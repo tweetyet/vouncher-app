@@ -4,6 +4,8 @@ import ModuleBtn from '../components/ModuleBtn'
 import {HiSquare3Stack3D} from "react-icons/hi2";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import { HiMiniDocumentDuplicate } from "react-icons/hi2";
+import { IoMdTrophy } from "react-icons/io";
+import { TbAlertSquareFilled } from "react-icons/tb";
 
 const DashBoard = () => {
   return (
@@ -27,6 +29,21 @@ const DashBoard = () => {
           <div className='col-span-1'>
             <ModuleBtn name={"Voucher"}
              icon={<HiMiniDocumentDuplicate className='size-14'/>} 
+             url={"/voucher"}/>
+
+          </div>
+
+          <div className='col-span-1'>
+            <ModuleBtn name={"Best Selling Products"}
+             icon={<IoMdTrophy  className='size-14'/>} 
+             url={"/voucher"}/>
+
+          </div>
+
+
+          <div className='col-span-1'>
+            <ModuleBtn name={"Low Stocks Alerts"}
+             icon={<TbAlertSquareFilled  className='size-14'/>} 
              url={"/voucher"}/>
 
           </div>

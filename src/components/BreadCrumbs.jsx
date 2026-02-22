@@ -17,6 +17,19 @@ const BreadCrumbs = ({ currentPageTitle, links }) => {
               Home
             </Link>
           </li>
+
+          {links &&links.map((link, index) => (
+            <li key={index} className="inline-flex  items-center">
+              <Link 
+                to={link.path}
+                className="inline-flex gap-1 items-center text-sm font-medium text-body hover:text-[#3A2F26]"
+              >
+                <HiChevronRight />
+                {link.title}
+              </Link>
+            </li>
+          ))}
+
           <li>
             <div className="flex items-center space-x-1.5">
               <HiChevronRight />

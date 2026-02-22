@@ -7,7 +7,8 @@ const ProductPage = () => {
   return (
     <section>
       <Container>
-        <BreadCrumbs currentPageTitle={"Products"} />
+        <BreadCrumbs currentPageTitle={"Products"}
+         />
        
         <ProductList />
       </Container>
