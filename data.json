@@ -42,12 +42,193 @@
       "all_correct": true,
       "created_at": "2026-02-21T10:57:44.130Z",
       "id": 17
+    }
+  ],
+  "vouchers": [
+    {
+      "voucher_id": "INV-20260224-9831",
+      "customer_name": "Aung Aung",
+      "customer_email": "ytheint80@gmail.com",
+      "sale_date": "2026-02-24",
+      "correct_field": true,
+      "records": [
+        {
+          "id": 1771944532256,
+          "product": {
+            "id": 9,
+            "product_name": "REST API Development Kit",
+            "price": 95,
+            "created_at": "2022-09-01 17:25:00"
+          },
+          "quantity": "2",
+          "cost": 190,
+          "created_at": "2026-02-24T14:48:52.256Z"
+        }
+      ],
+      "total": 190,
+      "tax": 13.3,
+      "netTotal": 203.3,
+      "id": 1
     },
     {
-      "product_name": "KOKO",
-      "price": "1500",
-      "created_at": "2026-02-21T12:20:56.827Z",
-      "id": 18
+      "voucher_id": "INV-20260304-7351",
+      "customer_name": "Yamin",
+      "customer_email": "ytheint80@gmail.com",
+      "sale_date": "2026-03-04",
+      "correct_field": true,
+      "records": [
+        {
+          "id": 1772643805674,
+          "product": {
+            "id": 9,
+            "product_name": "REST API Development Kit",
+            "price": 95,
+            "created_at": "2022-09-01 17:25:00"
+          },
+          "quantity": "2",
+          "cost": 190,
+          "created_at": "2026-03-04T17:03:25.674Z"
+        }
+      ],
+      "total": 190,
+      "tax": 13.3,
+      "netTotal": 203.3,
+      "id": 2
+    },
+    {
+      "voucher_id": "INV-20260304-7879",
+      "customer_name": "et",
+      "customer_email": "ehsd3994@gmail.com",
+      "sale_date": "2026-03-04",
+      "correct_field": true,
+      "records": [
+        {
+          "id": 1772643827519,
+          "product": {
+            "id": 11,
+            "product_name": "UI/UX Design for Developers",
+            "price": 85,
+            "created_at": "2022-11-11 15:35:00"
+          },
+          "quantity": "2",
+          "cost": 170,
+          "created_at": "2026-03-04T17:03:47.519Z"
+        }
+      ],
+      "total": 170,
+      "tax": 11.9,
+      "netTotal": 181.9,
+      "id": 3
+    },
+    {
+      "voucher_id": "INV-20260304-5867",
+      "customer_name": "koko",
+      "customer_email": "koko@gmail.com",
+      "sale_date": "2026-03-04",
+      "correct_field": true,
+      "records": [
+        {
+          "id": 1772643854104,
+          "product": {
+            "id": 12,
+            "product_name": "MongoDB Database Integration",
+            "price": 70,
+            "created_at": "2022-12-03 09:50:00"
+          },
+          "quantity": "8",
+          "cost": 560,
+          "created_at": "2026-03-04T17:04:14.104Z"
+        },
+        {
+          "id": 1772643862171,
+          "product": {
+            "id": 10,
+            "product_name": "Web Hosting & Deployment Guide",
+            "price": 60,
+            "created_at": "2022-10-09 12:00:00"
+          },
+          "quantity": "1",
+          "cost": 60,
+          "created_at": "2026-03-04T17:04:22.171Z"
+        }
+      ],
+      "total": 620,
+      "tax": 43.400000000000006,
+      "netTotal": 663.4,
+      "id": 4
+    },
+    {
+      "voucher_id": "INV-20260304-8206",
+      "customer_name": "U Kan Wai",
+      "customer_email": "ukanwai@gmail.com",
+      "sale_date": "2026-03-04",
+      "correct_field": true,
+      "records": [
+        {
+          "id": 1772650334526,
+          "product": {
+            "product_name": "Full Stack Web ET",
+            "price": "10000",
+            "created_at": "2026-02-21T12:19:58.788Z",
+            "id": 6
+          },
+          "quantity": "1",
+          "cost": 10000,
+          "created_at": "2026-03-04T18:52:14.526Z"
+        },
+        {
+          "id": 1772650341151,
+          "product": {
+            "id": 8,
+            "product_name": "E-commerce Website Starter Kit",
+            "price": 150,
+            "created_at": "2022-08-14 13:10:00"
+          },
+          "quantity": "2",
+          "cost": 300,
+          "created_at": "2026-03-04T18:52:21.151Z"
+        },
+        {
+          "id": 1772650345269,
+          "product": {
+            "id": 11,
+            "product_name": "UI/UX Design for Developers",
+            "price": 85,
+            "created_at": "2022-11-11 15:35:00"
+          },
+          "quantity": "4",
+          "cost": 340,
+          "created_at": "2026-03-04T18:52:25.269Z"
+        },
+        {
+          "id": 1772650356806,
+          "product": {
+            "id": 12,
+            "product_name": "MongoDB Database Integration",
+            "price": 70,
+            "created_at": "2022-12-03 09:50:00"
+          },
+          "quantity": "5",
+          "cost": 350,
+          "created_at": "2026-03-04T18:52:36.806Z"
+        },
+        {
+          "id": 1772650365167,
+          "product": {
+            "id": 10,
+            "product_name": "Web Hosting & Deployment Guide",
+            "price": 60,
+            "created_at": "2022-10-09 12:00:00"
+          },
+          "quantity": "7",
+          "cost": 420,
+          "created_at": "2026-03-04T18:52:45.167Z"
+        }
+      ],
+      "total": 11410,
+      "tax": 798.7,
+      "netTotal": 12208.7,
+      "id": 5
     }
   ]
 }

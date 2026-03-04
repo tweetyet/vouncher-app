@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Aurora from "./components/Aurora";
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+  return <div>App</div>;
+};
 
-export default App
+export default App;

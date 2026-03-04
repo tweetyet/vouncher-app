@@ -32,7 +32,7 @@ const BreadCrumbs = ({ currentPageTitle, links }) => {
 
           <li>
             <div className="flex items-center space-x-1.5">
-              <HiChevronRight />
+              <HiChevronRight className="text-[#3A2F26]" />
               <span className="inline-flex items-center text-sm font-medium text-body hover:text-[#3A2F26]">
                 {currentPageTitle}
               </span>

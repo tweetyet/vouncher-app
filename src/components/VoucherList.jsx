@@ -3,8 +3,12 @@ import { FaSearch, FaCartPlus, FaEdit } from "react-icons/fa";
 import { HiComputerDesktop } from "react-icons/hi2";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import VoucherListRow from "./VoucherListRow";
+import useSWR from "swr";
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const VoucherList = () => {
+  const{data,isLoading,error}=useSWR(import.meta.env.VITE_API_URL + "/vouchers", fetcher);
   return (
     <div>
     <div className="flex justify-between mb-3 ">
@@ -50,7 +54,7 @@ const VoucherList = () => {
         <thead className="bg-[#3A2F26] text-[#F3EBDD] border-b border-[#F3EBDD] tracking-wider">
           <tr className="">
             <th scope="col" className="px-6 py-3 font-medium ">
-              #
+              #VoucherID
             </th>
             <th scope="col" className="px-6 py-3 font-medium text-[#F3EBDD]">
               CUSTOMER NAME
@@ -74,40 +78,11 @@ const VoucherList = () => {
               There is no voucher
             </td>
           </tr>
-          <tr className=" border-b border-default ">
-            <td className="px-6 py-4">1</td>
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-heading whitespace-nowrap"
-            >
-              Yamin Theint Theint Wai
-            </th>
+         
+         {!isLoading&&data?.map((voucher,index)=>(
+          <VoucherListRow key={index} voucher={voucher} />
 
-            <td className="px-6 py-4 text-end">ytheint80@gmail.com</td>
-            <td className="px-6 py-4 text-end">
-              <p className="text-sm">12/12/2022</p>
-              <p className="text-sm">10:30 AM</p>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex justify-end">
-                <div className="inline-flex rounded-md shadow-sm overflow-hidden border border-gray-200">
-                  <button
-                    type="button"
-                    className="p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition"
-                  >
-                    <FaEdit className="size-5" />
-                  </button>
-
-                  <button
-                    type="button"
-                    className="p-2 text-gray-400 hover:bg-red-50 hover:text-red-600 transition border-l border-gray-200"
-                  >
-                    <RiDeleteBin5Fill className="size-5" />
-                  </button>
-                </div>
-              </div>
-            </td>
-          </tr>
+         ))}
         </tbody>
       </table>
     </div>
