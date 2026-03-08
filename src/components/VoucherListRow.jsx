@@ -11,6 +11,7 @@ import { HiOutlineArrowLongRight } from "react-icons/hi2";
 
 const VoucherListRow = ({
   voucher: { id, voucher_id, customer_name, customer_email, sale_date },
+  search,
 }) => {
   //delete btn
   const { mutate } = useSWRConfig();
@@ -27,7 +28,18 @@ const VoucherListRow = ({
   };
   return (
     <tr className=" border-b border-default ">
-      <td className="px-6 py-4">{voucher_id}</td>
+      <td className="px-6 py-4">
+        {search
+          ? voucher_id.split(search).map((part, index, arr) => (
+              <>
+                {part}
+                {index < arr.length - 1 && (
+                  <span className="font-bold">{search}</span>
+                )}
+              </>
+            ))
+          : voucher_id}
+      </td>
       <th
         scope="row"
         className="px-6 py-4 font-medium text-heading whitespace-nowrap"
@@ -41,20 +53,27 @@ const VoucherListRow = ({
       </td>
       <td className="px-6 py-4">
         <div className="flex justify-end">
-
-         <div className="inline-flex rounded-md shadow-sm overflow-hidden border border-gray-200">
-         <Link to={`/voucher/detail/${id}`} className="p-2 text-gray-400 hover:bg-red-50 hover:text-red-600 transition border-l border-gray-200">
-            <HiOutlineArrowLongRight className="size-5" />
-          </Link>
-          
-         </div>
           <div className="inline-flex rounded-md shadow-sm overflow-hidden border border-gray-200">
-            <button onClick={handleDeleteBtn}
+            <Link
+              to={`/voucher/detail/${id}`}
+              className="p-2 text-gray-400 hover:bg-red-50 hover:text-red-600 transition border-l border-gray-200"
+            >
+              <HiOutlineArrowLongRight className="size-5" />
+            </Link>
+          </div>
+          <div className="inline-flex rounded-md shadow-sm overflow-hidden border border-gray-200">
+            <button
+              onClick={handleDeleteBtn}
               type="button"
               className="p-2 text-gray-400 hover:bg-red-50 hover:text-red-600 transition border-l border-gray-200"
             >
-             {isDeleting ? (
-                <l-spiral size="20" speed="0.9" background="transparent" color="red"></l-spiral>
+              {isDeleting ? (
+                <l-spiral
+                  size="20"
+                  speed="0.9"
+                  background="transparent"
+                  color="red"
+                ></l-spiral>
               ) : (
                 <RiDeleteBin5Fill className="size-5" />
               )}

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaSearch, FaCartPlus, FaEdit } from "react-icons/fa";
-import { HiComputerDesktop } from "react-icons/hi2";
+import { HiArchiveBoxXMark, HiComputerDesktop } from "react-icons/hi2";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import VoucherListRow from "./VoucherListRow";
@@ -10,7 +10,9 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const VoucherList = () => {
   const [search, setSearch] = useState("");
-  console.log(search);
+  const searchInput =useRef("");
+
+  // console.log(search);
   const { data, isLoading, error } = useSWR(
     search
       ? `${import.meta.env.VITE_API_URL}/vouchers?voucher_id_like=${search}`
@@ -26,6 +28,12 @@ const VoucherList = () => {
     console.log(e.target.value);
     setSearch(e.target.value);
   },500);
+
+  const handleClearSearch = () => {
+    // setSearch("");
+    searchInput.current.value = "";
+    setSearch("");
+  };
   return (
     <div>
       <div className="flex justify-between mb-3 ">
@@ -35,7 +43,7 @@ const VoucherList = () => {
               <FaSearch className="w-4 h-4 text-gray-500" />
             </div>
             <input
-              onChange={handleSearch}
+              onChange={handleSearch} ref={searchInput}
               type="text"
               placeholder="Search Voucher"
               className="w-full pl-15 pr-4 py-2 bg-[#F3EBDD] 
@@ -46,9 +54,11 @@ const VoucherList = () => {
      focus:outline-none 
      focus:ring-2 
      focus:ring-[#A9977A] 
-     focus:border-[#3A2F26]
+     focus:border-[#3A2F26] 
      transition duration-200"
             />
+            {search && ( <button onClick={handleClearSearch} className="absolute right-2 top-1/2 -translate-y-1/2 text-[#3A2F26]"><HiArchiveBoxXMark className="w-5 h-5 text-brown-500 hover:scale-110 transition duration-300" /></button>)}
+           
           </div>
         </div>
         <div className="">
@@ -100,7 +110,7 @@ const VoucherList = () => {
 
             {!isLoading &&
               data?.map((voucher, index) => (
-                <VoucherListRow key={index} voucher={voucher} />
+                <VoucherListRow key={index} voucher={voucher} search={search}/>
               ))}
           </tbody>
         </table>
