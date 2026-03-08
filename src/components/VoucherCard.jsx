@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
+import printJS from "print-js";
+import html2pdf from "html2pdf.js";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const VoucherCard = () => {
@@ -11,6 +13,31 @@ const VoucherCard = () => {
     fetcher
   );
 
+  const handlePrint=()=>{
+    // window.print();
+    printJS({
+      printable: "printArea",
+      type: 'html',
+      css:[
+        '/src/index.css'
+      ]
+      // header: null
+    })
+  }
+
+  const handlePdf =() => {
+    const element =document.getElementById("printArea");
+    const opt={
+      margin: 0.1,
+      filename: "invoice.pdf",
+      image:{type:"jpeg",quality:0.98},
+      html2canvas:{scale:2},
+      jsPDF:{unit:"in",format:"a5",orientation:"portrait"}
+    };
+    html2pdf().from(element).set(opt).save();
+
+  }
+
   if (isLoading) return;
   <p>Loading...</p>;
 
@@ -19,7 +46,8 @@ const VoucherCard = () => {
   const grandTotal = subtotal + tax;
 
   return (
-    <div className="w-[14.8cm] bg-[#F0EBE3] text-[#1A1A1A] font-sans rounded-lg shadow-lg">
+   <div className="flex gap-5">
+     <div id="printArea" className="w-[21cm] bg-[#F0EBE3] text-[#1A1A1A] font-sans rounded-lg shadow-lg">
       <div className="px-12 pt-12 pb-8">
         {/* Header */}
         <div className="flex items-start justify-between mb-8">
@@ -40,13 +68,13 @@ const VoucherCard = () => {
 
         {/* Invoice Info + Company Address */}
         <div className="flex justify-between mb-10">
-          <div className="text-sm leading-relaxed">
-            <p>
-              <span className="font-semibold">INVOICE NUMBER:</span>{" "}
+          <div className="text-sm leading-relaxed ">
+            <p className="">
+              <span className="font-semibold leading-6">INVOICE NUMBER:</span>{" "}
               {data.voucher_id}
             </p>
             <p>
-              <span className="font-semibold">DATE:</span> {data.sale_date}
+              <span className="font-semibold leading-6">DATE:</span> {data.sale_date}
             </p>
           </div>
           <div className="text-right text-sm leading-relaxed">
@@ -203,6 +231,23 @@ const VoucherCard = () => {
     </div>
   
   </div>
+
+  <div className="flex flex-col gap-3">
+  <button
+      onClick={handlePrint}
+      className="bg-[#1A1A1A] hover:bg-[#3A2F26] text-white font-semibold px-4 py-2 rounded-lg shadow"
+    >
+      Print Voucher
+    </button>
+
+    <button
+      onClick={handlePdf}
+      className="bg-[#1A1A1A] hover:bg-[#3A2F26] text-white font-semibold px-4 py-2 rounded-lg shadow"
+    >
+      Download PDF
+    </button>
+  </div>
+   </div>
   );
 };
 

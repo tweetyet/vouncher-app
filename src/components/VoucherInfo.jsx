@@ -5,6 +5,7 @@ import SaleForm from "../components/SaleForm";
 import VoucherTable from "./VoucherTable";
 import useRecordStore from "../stores/useRecordStore";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 lineSpinner.register();
 
 const VoucherInfo = () => {
@@ -13,6 +14,7 @@ const VoucherInfo = () => {
     handleSubmit,
     formState: { errors },reset
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async(data) => {
     setIsSending(true);
@@ -21,17 +23,22 @@ const VoucherInfo = () => {
     const netTotal = total + tax;
     const currentVoucher={...data,records,total,tax,netTotal};
 
-    await fetch(import.meta.env.VITE_API_URL + "/vouchers", {
+  const res=  await fetch(import.meta.env.VITE_API_URL + "/vouchers", {
       method: "POST",
       body: JSON.stringify(currentVoucher),
       headers: {
         "Content-Type": "application/json",
       },
     });
+    const json= await res.json();
     toast.success("Voucher created successfully!");
     resetRecord();
     reset();
     setIsSending(false);
+    if(data.redirect_to_detail){
+      navigate(`/voucher/detail/${json.id}`)
+
+    }
    
   };
 
@@ -143,9 +150,35 @@ const VoucherInfo = () => {
       <SaleForm />
       <VoucherTable className=""/>
 
-      <div className="flex justify-end items-center gap-4 mt-5">
+      <div className="flex flex-col justify-end items-end gap-4 mt-5">
         {/* Checkbox */}
         <div className="flex items-center">
+          
+          <label
+            htmlFor="redirect_to_detail"
+            className="select-none ms-2 text-sm font-medium text-gray-700"
+          >
+           Redirect to Voucher Detail
+          </label>
+          <input
+            id="redirect_to_detail"
+            {...register("redirect_to_detail")}
+            type="checkbox"
+            required
+            form="infoForm"
+            className="w-4 h-4 border border-gray-300 rounded 
+      bg-gray-100 focus:ring-2 focus:ring-[#3A2F26]"
+          />
+        </div>
+
+        <div className="flex items-center">
+          
+          <label
+            htmlFor="correct-field"
+            className="select-none ms-2 text-sm font-medium text-gray-700"
+          >
+            Make sure all fields are filled!
+          </label>
           <input
             id="correct-field"
             {...register("correct_field")}
@@ -155,13 +188,8 @@ const VoucherInfo = () => {
             className="w-4 h-4 border border-gray-300 rounded 
       bg-gray-100 focus:ring-2 focus:ring-[#3A2F26]"
           />
-          <label
-            htmlFor="correct-field"
-            className="select-none ms-2 text-sm font-medium text-gray-700"
-          >
-            Make sure all fields are filled!
-          </label>
         </div>
+
 
         {/* Button */}
         <button
