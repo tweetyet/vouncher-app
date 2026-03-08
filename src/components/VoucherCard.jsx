@@ -47,7 +47,7 @@ const VoucherCard = () => {
 
   return (
    <div className="flex gap-5">
-     <div id="printArea" className="w-[21cm] bg-[#F0EBE3] text-[#1A1A1A] font-sans rounded-lg shadow-lg">
+     <div id="printArea" className="w-[14.8cm] bg-[#F0EBE3] text-[#1A1A1A] font-sans rounded-lg shadow-lg">
       <div className="px-12 pt-12 pb-8">
         {/* Header */}
         <div className="flex items-start justify-between mb-8">
