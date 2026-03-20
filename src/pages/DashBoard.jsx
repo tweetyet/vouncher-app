@@ -9,20 +9,18 @@ import { TbAlertSquareFilled } from "react-icons/tb";
 import Aurora from "../components/Aurora";
 import MagicBento from "../components/MagicBento";
 import Nav from "../components/Nav";
+import LogOut from "../components/LogOut";
 
 const DashBoard = () => {
   return (
     <section className="relative min-h-screen">
-  
-      <Container> 
-  
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-5">
+      <Container>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mb-5">
           <div className="col-span-1">
-           
             <ModuleBtn
               name={"Products"}
               icon={<HiSquare3Stack3D className="size-14" />}
-              url={"/product"}
+              url={"/dashboard/product"}
             />
           </div>
 
@@ -30,7 +28,7 @@ const DashBoard = () => {
             <ModuleBtn
               name={"Sale"}
               icon={<HiMiniShoppingBag className="size-14" />}
-              url={"/sale"}
+              url={"/dashboard/sale"}
             />
           </div>
 
@@ -38,7 +36,7 @@ const DashBoard = () => {
             <ModuleBtn
               name={"Voucher"}
               icon={<HiMiniDocumentDuplicate className="size-14" />}
-              url={"/voucher"}
+              url={"/dashboard/voucher"}
             />
           </div>
 
@@ -46,7 +44,7 @@ const DashBoard = () => {
             <ModuleBtn
               name={"Best Selling Products"}
               icon={<IoMdTrophy className="size-14" />}
-              url={"/voucher"}
+              url={"/dashboard/best-selling-products"}
             />
           </div>
 
@@ -54,9 +52,14 @@ const DashBoard = () => {
             <ModuleBtn
               name={"Low Stocks Alerts"}
               icon={<TbAlertSquareFilled className="size-14" />}
-              url={"/voucher"}
+              url={"/dashboard/low-stocks-alerts"}
             />
           </div>
+        </div>
+
+        <div className="flex gap-3 items-center justify-end">
+          <p className="text-[#2B2B2B] font-sm">If you finish your work, you can </p>
+        <LogOut/>
         </div>
 
         {/* <MagicBento

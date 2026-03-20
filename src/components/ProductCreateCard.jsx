@@ -30,6 +30,7 @@ const ProductCreateCard = () => {
     created_at: new Date().toISOString(),}),
       headers: {
         "Content-Type": "application/json",
+       
       },
     });
     setIsSending(false);

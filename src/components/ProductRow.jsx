@@ -11,7 +11,7 @@ spiral.register();
 
 // Default values shown
 
-const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
+const ProductRow = ({ product: { id, product_name, price, created_at,updated_at } }) => {
   const { mutate } = useSWRConfig();
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -19,12 +19,19 @@ const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
 
   const handleDeleteBtn = async () => {
     setIsDeleting(true);
-    await fetch(import.meta.env.VITE_API_URL + `/products/${id}`, {
+  const res=  await fetch(import.meta.env.VITE_API_URL + `/dashboard/products/${id}`, {
       method: "DELETE",
     });
-    toast.success("Product deleted successfully!");
-    mutate(import.meta.env.VITE_API_URL + `/products`);
-    console.log(id);
+
+    const json=await res.json();
+
+   if(res.status===200){
+    toast.success(json.message);
+    mutate(import.meta.env.VITE_API_URL + `/dashboard/products`);
+   }else{
+    toast.error(json.message);
+   }
+    setIsDeleting(false);
   };
 
   return (
@@ -40,6 +47,9 @@ const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
       <td className="px-6 py-4 text-end">{price}</td>
       <td className="px-6 py-4 text-end">
         <CreatedAt timeStamp={created_at}/>
+      </td>
+      <td className="px-6 py-4 text-end">
+        <CreatedAt timeStamp={updated_at}/>
       </td>
       <td className="px-6 py-4">
         <div className="flex justify-end">

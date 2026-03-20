@@ -61,7 +61,7 @@ const SaleForm = () => {
             >
                 <option value="">Select a product</option>
               {!isLoading&&
-              data.map((product)=>(
+              data?.data?.map((product)=>(
                 <option key={product.id} value={JSON.stringify(product)} >
                     {product.product_name}
 

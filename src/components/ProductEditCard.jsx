@@ -27,10 +27,15 @@ const ProductEditCard = () => {
     fetcher
   );
 
+  if(isLoading)return <p>Loading...</p>
+  console.log(
+    data
+  )
+
   const [isSending, setIsSending] = useState(false);
   const navigate = useNavigate();
 
-  const handleCreateProduct = async (data) => {
+  const handleUpdateProduct = async (data) => {
     setIsSending(true);
 
     await fetch(import.meta.env.VITE_API_URL + "/products/"+id, {
@@ -63,7 +68,7 @@ const ProductEditCard = () => {
       {isLoading ? (
         <l-dot-pulse size="43" speed="1.3" color="brown"></l-dot-pulse>
       ) : (
-        <form onSubmit={handleSubmit(handleCreateProduct)}>
+        <form onSubmit={handleSubmit(handleUpdateProduct)}>
           <div>
             <div>
               <label className="block mb-2.5 text-sm font-medium text-heading">
@@ -76,7 +81,7 @@ const ProductEditCard = () => {
                   minLength: 3,
                   maxLength: 30,
                 })}
-                defaultValue={data.product_name}
+                defaultValue={data?.data?.product_name}
                 className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-danger-strong focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body mb-5"
                 placeholder="eg:  Apple"
               />
@@ -109,7 +114,7 @@ const ProductEditCard = () => {
                   min: 100,
                   max: 10000,
                 })}
-                defaultValue={data.price}
+                defaultValue={data?.data?.price}
                 className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-danger-strong focus:border-strong block w-full px-3 py-2.5 shadow-xs placeholder:text-body mb-5"
                 placeholder="eg:  100"
               />

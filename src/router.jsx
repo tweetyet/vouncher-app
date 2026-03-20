@@ -8,42 +8,62 @@ import SalePage from "./pages/Salepage.jsx";
 import ProductCreatePage from "./pages/ProductCreatePage.jsx";
 import ProductEditPage from "./pages/ProductEditPage.jsx";
 import VoucherDetailPage from "./pages/VoucherDetailPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 const router =createBrowserRouter([
+   
     {
         path: "/",
-        element:<LayOut/>,
         errorElement:<NotFoundPage/>,
         children: [
            
             {
                index: "true",
-                element: <DashBoard/>
+                element: <LoginPage/>
             },
             {
-                path: "/product",
-                element: <ProductPage/>
-            },
+               path:"/register",
+                 element: <RegisterPage/>
+             },
             {
-                path: "/product/create",
-                element: <ProductCreatePage/>
+                path: "dashboard",
+                element:<LayOut/>,
+                children:[
+                    {
+                        index: "true",
+                        element: <DashBoard/>
+                    },
+                     {
+                        path: "product",
+                        element: <ProductPage/>
+                    },
+                    {
+                        path: "product/create",
+                        element: <ProductCreatePage/>
+                    },
+                    {
+                        path: "product/edit/:id",
+                        element: <ProductEditPage/>
+                    },
+                    {
+                        path: "sale",
+                        element: <SalePage/>
+                    },
+                    {
+                        path: "voucher",
+                        element: <VoucherPage/>
+                    },
+                    {
+                        path: "voucher/detail/:id",
+                        element: <VoucherDetailPage/>
+                    }
+
+                    
+                ]
             },
-            {
-                path: "/product/edit/:id",
-                element: <ProductEditPage/>
-            },
-            {
-                path: "/sale",
-                element: <SalePage/>
-            },
-            {
-                path: "/voucher",
-                element: <VoucherPage/>
-            },
-            {
-                path: "/voucher/detail/:id",
-                element: <VoucherDetailPage/>
-            }
+           
+            
 
 
         ]
